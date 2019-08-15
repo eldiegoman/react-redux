@@ -1,11 +1,12 @@
 import React from 'react'
 
+import { Home } from '../pages/home'
 class App extends React.Component {
 
   state = {
     title: 'Welcome'
   }
-  
+
   componentDidMount() {
 
   }
@@ -14,9 +15,7 @@ class App extends React.Component {
     const { title } = this.state
 
     return (
-      <div>
-        <h1>{title}</h1>
-      </div>
+      <Home />
     )
   }
 }
