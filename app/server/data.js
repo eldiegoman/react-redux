@@ -18,7 +18,11 @@ const publications = [
   { id: 7, title: loremIpsum({ count: 1 }), body: loremIpsum({ count: 4 }), date: momentRandom(), authorId: 4 },
   { id: 8, title: loremIpsum({ count: 1 }), body: loremIpsum({ count: 4 }), date: momentRandom(), authorId: 2 },
   { id: 9, title: loremIpsum({ count: 1 }), body: loremIpsum({ count: 4 }), date: momentRandom(), authorId: 4 },
-  { id: 10, title: loremIpsum({ count: 1 }), body: loremIpsum({ count: 4 }), date: momentRandom(), authorId: 3 }
+  { id: 10, title: loremIpsum({ count: 1 }), body: loremIpsum({ count: 4 }), date: momentRandom(), authorId: 3 },
+  { id: 11, title: loremIpsum({ count: 1 }), body: loremIpsum({ count: 4 }), date: momentRandom(), authorId: 4 },
+  { id: 12, title: loremIpsum({ count: 1 }), body: loremIpsum({ count: 4 }), date: momentRandom(), authorId: 4 },
+  { id: 13, title: loremIpsum({ count: 1 }), body: loremIpsum({ count: 4 }), date: momentRandom(), authorId: 2 },
+  { id: 14, title: loremIpsum({ count: 1 }), body: loremIpsum({ count: 4 }), date: momentRandom(), authorId: 3 },
 ]
 
 module.exports = {
