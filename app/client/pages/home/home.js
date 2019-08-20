@@ -1,9 +1,15 @@
-import React from 'react'
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import React, { Component } from 'react'
 
-import { LayoutContainer } from '../../Components/layoutContainer';
+
 import HomeStyled from './home.styled';
+import { LayoutContainer } from '../../Components/layoutContainer';
 
-class Home extends React.Component {
+import { PublicationsGrid } from '../../Components/publicationsGrid';
+
+import * as homeActs from '../../state/modules/home/actions';
+class Home extends Component {
 
   static defaultProps = {
 
@@ -13,11 +19,14 @@ class Home extends React.Component {
   }
 
   componentDidMount() {
+    const { homeActions } = this.props;
 
+    if (homeActions && homeActions.fetchHome) homeActions.fetchHome();
   }
 
   render() {
-    const { children } = this.props;
+    const { publications } = this.props;
+
 
     return (
 
@@ -28,7 +37,7 @@ class Home extends React.Component {
             <span>Filter Name</span>
             <span>Filter Email</span>
             <input type="text"></input>
-            <div>content</div>
+            <PublicationsGrid publications={publications}></PublicationsGrid>
           </div>
         </HomeStyled>
 
@@ -38,4 +47,12 @@ class Home extends React.Component {
   }
 }
 
-export default Home
+const mapStateToProps = (reducers) => {
+  return reducers.home;
+}
+
+const mapDispatchToProps = dispatch => ({
+  homeActions: bindActionCreators(homeActs, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

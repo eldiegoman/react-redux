@@ -1,29 +1,42 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react'
+import PropTypes from 'prop-types'
 
+import { Card } from '../card/index'
+import PublicationsGridStyled from './publicationsGrid.styled';
+
+
+const buildGrid = (data) => {
+  return data.map((item, index) => (
+    <Card key={item.id} gridData={`col-${index}`}>
+      <Card.Header>
+        {item.title}
+      </Card.Header>
+      <Card.Content>
+        <p>
+          {item.body}
+        </p>
+        <h5>{item.date}</h5>
+      </Card.Content>
+    </Card>
+  ))
+}
 const PublicationsGrid = (props) => {
 
+  const { publications } = props;
+
   return (
-    <div>
-      publications grid
-        </div>
-  );
+    <PublicationsGridStyled>
+      {buildGrid(publications)}
+    </PublicationsGridStyled>
+  )
 }
 
 PublicationsGrid.propTypes = {
-  publications: PropTypes.arrayOf(
-    PropTypes.shape({
-      authorId: PropTypes.number,
-      body: PropTypes.string,
-      date: PropTypes.string,
-      id: PropTypes.number,
-      title: PropTypes.string
-    })
-  )
+  publications: PropTypes.array
 }
 
 PublicationsGrid.defaultProps = {
   publications: []
 }
 
-export default PublicationsGrid;
+export default PublicationsGrid

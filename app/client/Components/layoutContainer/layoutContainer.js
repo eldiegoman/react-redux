@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import LayoutContainerStyled from './layoutContainer.styled';
+import LayoutContainerStyled from './layoutContainer.styled'
 
 const LayoutContainer = props => {
   const {
     children,
     className,
     ...rest
-  } = props;
+  } = props
 
   return (
     <LayoutContainerStyled>
@@ -24,17 +24,17 @@ const LayoutContainer = props => {
       </div>
       {children}
     </LayoutContainerStyled>
-  );
-};
+  )
+}
 
 LayoutContainer.propTypes = {
   children: PropTypes.node,
   className: PropTypes.string
-};
+}
 
 LayoutContainer.defaultProps = {
   children: undefined,
   className: undefined
-};
+}
 
-export default LayoutContainer;
+export default LayoutContainer

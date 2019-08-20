@@ -1,13 +1,11 @@
-import styled from 'styled-components';
-
+import styled from 'styled-components'
 
 const Home = styled.div`
   display: block;
   margin: 0 auto;
   padding: 10px;
   background-color: #ddd;
-  width: 90%;
-  height: 100vh;
+  width: 100%;
 `
 
-export default Home;
+export default Home
