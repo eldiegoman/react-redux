@@ -1,1 +1,1 @@
-export { default as PublicationsGrid } from './publicationsGrid';
+export { default as PublicationsGrid } from './publicationsGrid'

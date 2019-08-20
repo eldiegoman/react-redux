@@ -1,10 +1,22 @@
 {
   "presets": [
-    "@babel/preset-react", 
+    "@babel/preset-react",
     "@babel/preset-env"
   ],
   "plugins": [
-      "transform-class-properties",
-      "@babel/plugin-syntax-dynamic-import" 
+    "transform-class-properties",
+    "@babel/plugin-syntax-dynamic-import",
+    [
+      "module-resolver",
+      {
+        "root": [
+          "./app"
+        ],
+        "alias": {
+          "initialState": "./app/client/state/store/initialState",
+          "store": "./app/client/state/store"
+        }
+      }
     ]
+  ]
 }

@@ -39,7 +39,7 @@ app.get('/search/:searchTerm', (req, res, next) => {
   const searchTerm = req.params.searchTerm.toLowerCase()
   const results = publications.filter(p => p.title.toLowerCase().includes(searchTerm))
   res.json({ data: results })
-}) 
+})
 
 app.use((req, res, next) => {
   res.json('Not found')
