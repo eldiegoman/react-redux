@@ -1,13 +1,19 @@
 import { fromJS } from 'immutable';
 
 const initialState = fromJS({
-  home: {
+  app: {
+    authors: [],
+    isFetching: false
+  },
+  detail: {
     isFetching: false,
     publications: [],
     author: {
-      id: null,
-      name: null
     }
+  },
+  home: {
+    isFetching: false,
+    publications: []
   }
 });
 

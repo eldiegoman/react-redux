@@ -27,7 +27,7 @@ function searchEpic(action$) {
         takeUntil(
           action$.pipe(ofType(searchActionTypes.SEARCH_FAILURE))
         ),
-        startWith(searchActions.searchPublicationsSuccess())
+        startWith(searchActions.searchPublicationsRequest())
       )
     )
   );

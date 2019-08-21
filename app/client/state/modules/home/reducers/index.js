@@ -24,10 +24,27 @@ const publications = handleActions(
     [homeActionTypes.FETCH_HOME_REQUEST]: () => [],
     [homeActionTypes.FETCH_HOME_SUCCESS]: (_, action) =>
       action.payload,
-    
+
     [homeActionTypes.SEARCH_REQUEST]: () => [],
     [homeActionTypes.SEARCH_SUCCESS]: (_, action) =>
-      action.payload || []
+      action.payload || [],
+
+    [homeActionTypes.FILTER]: (state, action) => {
+
+      const { key } = action.payload;
+      const newData = state.slice().sort((a, b) => {
+        if (a[key] > b[key]) {
+          return 1;
+        }
+        if (a[key] < b[key]) {
+          return -1;
+        }
+        // a must be equal to b
+        return 0;
+      });
+
+      return newData
+    },
   },
   initialState.getIn(['home', 'publications'])
 );

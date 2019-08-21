@@ -19,8 +19,6 @@ export function fetch() {
   return request.get('/publications');
 }
 
-
 export function search(term) {
-  console.log("TCL: search -> term", term)
-  return request.get(`/search/:${term}`);
+  return request.get(`/search/${term}`);
 }
