@@ -6,6 +6,7 @@ const Home = styled.div`
   padding: 10px;
   background-color: #ddd;
   width: 100%;
+
 `
 
 export const HeaderStyled = styled.div`

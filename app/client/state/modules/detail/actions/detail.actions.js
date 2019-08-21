@@ -1,38 +1,34 @@
 import { createAction } from 'redux-actions';
-import homeActionTypes from '../actionTypes';
+import detailActionTypes from '../actionTypes';
 
 export const fetchPublications = createAction(
-  homeActionTypes.FETCH_HOME
+  detailActionTypes.FETCH_DETAIL,
+  id => ({ id })
 );
 
 export const fetchPublicationsCancel = createAction(
-  homeActionTypes.FETCH_HOME_CANCEL
+  detailActionTypes.FETCH_DETAIL_CANCEL
 );
 
 export const fetchPublicationsFailure = createAction(
-  homeActionTypes.FETCH_HOME_FAILURE,
+  detailActionTypes.FETCH_DETAIL_FAILURE,
   error => {
     return error;
   }
 );
 
 export const fetchPublicationsRequest = createAction(
-  homeActionTypes.FETCH_HOME_REQUEST
+  detailActionTypes.FETCH_DETAIL_REQUEST
 );
 
 export const fetchPublicationsSuccess = createAction(
-  homeActionTypes.FETCH_HOME_SUCCESS,
+  detailActionTypes.FETCH_DETAIL_SUCCESS,
   response => {
     return response
   }
 );
 
-export const fetchPublicationsById = createAction(
-  homeActionTypes.FETCH_HOME,
-  id => ({ id })
-);
-
 export const filterPublications = createAction(
-  homeActionTypes.FILTER,
+  detailActionTypes.FILTER,
   key => ({ key })
 );

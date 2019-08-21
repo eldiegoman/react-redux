@@ -40,13 +40,21 @@ class Home extends Component {
   }
 
   fetchSearch = (e) => {
+    e.preventDefault();
     const term = e.target.value;
     const { homeActions } = this.props;
 
-    if (homeActions && term && term !== '') {
+    if (homeActions && term !== '') {
       homeActions.searchPublications(term);
     } else {
       homeActions.fetchPublications();
+    }
+  }
+
+  filterData = (key) => {
+    const { homeActions } = this.props;
+    if (homeActions && key) {
+      homeActions.filterPublications(key);
     }
   }
 
@@ -55,38 +63,34 @@ class Home extends Component {
 
     return (
       <HomeStyled>
-        <div>
-          <h1>Publications</h1>
-          <HeaderStyled>
-            <SearchStyled>
-              <TextField
-                id="standard-full-width"
-                style={{ margin: 8 }}
-                placeholder="Search by title"
-                fullWidth
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-                onChange={(e) => { this.fetchSearch(e) }}
-              />
-            </SearchStyled>
+        <HeaderStyled>
+          <SearchStyled>
+            <TextField
+              id="standard-full-width"
+              style={{ margin: 8 }}
+              placeholder="Search by title"
+              fullWidth
+              margin="normal"
+              InputLabelProps={{
+                shrink: true,
+              }}
+              onChange={(e) => { this.fetchSearch(e) }}
+            />
+          </SearchStyled>
 
-            <FiltersStyled>
-              <h3>Sort by</h3>
-              <ButtonGroup size="small" aria-label="small outlined button group">
-                <Button onClick={() => { this.onSelectChange('date') }}>Date</Button>
-                <Button onClick={() => { this.onSelectChange('author') }}>Author</Button>
-                <Button onClick={() => { this.onSelectChange('Title') }}>Title</Button>
-              </ButtonGroup>
-            </FiltersStyled>
-          </HeaderStyled>
+          <FiltersStyled>
+            <h3>Sort by</h3>
+            <ButtonGroup size="small" aria-label="small outlined button group">
+              <Button onClick={() => { this.filterData('date') }}>Date</Button>
+              <Button onClick={() => { this.filterData('authorId') }}>Author</Button>
+              <Button onClick={() => { this.filterData('title') }}>Title</Button>
+            </ButtonGroup>
+          </FiltersStyled>
+        </HeaderStyled>
 
-          {publications.length ? (<PublicationsGrid isFetching={isFetching} publications={publications}></PublicationsGrid>) : (
-            <div>No results</div>
-          )}
-
-        </div>
+        {publications.length ? (<PublicationsGrid isFetching={isFetching} publications={publications}></PublicationsGrid>) : (
+          <div>No results</div>
+        )}
       </HomeStyled>
     )
   }

@@ -1,9 +1,13 @@
 import React from 'react'
-
-import { Home } from '../pages/home';
-import { Detail } from '../pages/detail';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import { Home } from '../Components/home';
+import { Detail } from '../Components/detail';
 import { LayoutContainer } from '../Components/layoutContainer';
 import { Route, Link } from "react-router-dom";
+import List from '@material-ui/core/List';
+
+import * as appActs from '../state/modules/app/actions';
 class App extends React.Component {
 
   state = {
@@ -11,34 +15,54 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    const { apppActions, authors } = this.props;
 
+    if (apppActions && !authors.length) {
+      apppActions.fetchAuthors();
+    }
   }
 
+  buildSideBar = () => {
+    const { authors } = this.props;
+
+    if (authors && authors.length) {
+      return (
+        <div>
+          <h4>
+            Authors
+        </h4>
+          <ul>
+            <li>
+              <Link to="/">Home
+            </Link>
+            </li>
+            {authors.map(item => (
+              <li key={item.id}>
+                <Link to={`${'/detail/'}${item.id}`}>{`${item.firstName} ${item.lastName}`}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+
+    } else {
+      <div>No results</div>
+    }
+  }
   render() {
     const { title } = this.state
 
+
     return (
       <LayoutContainer>
-        <div>
-          <h3>Users</h3>
-
-          <ul>
-            <li>
-              <Link to={{ pathname: "/", search: "?id=netflix" }}>
-                Netflix
-              </Link>
-            </li>
-            <li>User 2</li>
-            <li>User 3</li>
-            <li>User 4</li>
-          </ul>
-        </div>
+        {this.buildSideBar()}
         <Route
+          exact
           path="/"
           component={Home}
         />
         <Route
-          path="/details"
+          path="/detail/:authorId"
           component={Detail}
         />
       </LayoutContainer>
@@ -46,4 +70,12 @@ class App extends React.Component {
   }
 }
 
-export default App
+const mapStateToProps = (reducers) => {
+  return reducers.app;
+}
+
+const mapDispatchToProps = dispatch => ({
+  apppActions: bindActionCreators(appActs, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
