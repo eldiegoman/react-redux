@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { Card } from '../card/index'
 import PublicationsGridStyled from './publicationsGrid.styled';
@@ -22,7 +23,9 @@ const buildGrid = (data) => {
 }
 const PublicationsGrid = (props) => {
 
-  const { publications } = props;
+  const { publications, isFetching } = props;
+
+  if (isFetching) return <CircularProgress />
 
   return (
     <PublicationsGridStyled>
@@ -32,7 +35,11 @@ const PublicationsGrid = (props) => {
 }
 
 PublicationsGrid.propTypes = {
-  publications: PropTypes.array
+  publications: PropTypes.oneOfType([
+    PropTypes.object,
+    PropTypes.array
+  ]),
+  isFetching: PropTypes.bool
 }
 
 PublicationsGrid.defaultProps = {

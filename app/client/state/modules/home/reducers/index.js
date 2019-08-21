@@ -9,7 +9,12 @@ const isFetching = handleActions(
     [homeActionTypes.FETCH_HOME]: () => true,
     [homeActionTypes.FETCH_HOME_REQUEST]: () => true,
     [homeActionTypes.FETCH_HOME_FAILURE]: () => false,
-    [homeActionTypes.FETCH_HOME_SUCCESS]: () => false
+    [homeActionTypes.FETCH_HOME_SUCCESS]: () => false,
+
+    [homeActionTypes.SEARCH]: () => true,
+    [homeActionTypes.SEARCH_REQUEST]: () => true,
+    [homeActionTypes.SEARCH_FAILURE]: () => false,
+    [homeActionTypes.SEARCH_SUCCESS]: () => false
   },
   initialState.getIn(['home', 'isFetching'])
 );
@@ -18,7 +23,11 @@ const publications = handleActions(
   {
     [homeActionTypes.FETCH_HOME_REQUEST]: () => [],
     [homeActionTypes.FETCH_HOME_SUCCESS]: (_, action) =>
-      action.payload
+      action.payload,
+    
+    [homeActionTypes.SEARCH_REQUEST]: () => [],
+    [homeActionTypes.SEARCH_SUCCESS]: (_, action) =>
+      action.payload || []
   },
   initialState.getIn(['home', 'publications'])
 );

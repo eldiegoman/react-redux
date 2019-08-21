@@ -1,29 +1,34 @@
 import { createAction } from 'redux-actions';
 import homeActionTypes from '../actionTypes';
 
-export const fetchHome = createAction(
+export const fetchPublications = createAction(
   homeActionTypes.FETCH_HOME
 );
 
-export const fetchHomeCancel = createAction(
+export const fetchPublicationsCancel = createAction(
   homeActionTypes.FETCH_HOME_CANCEL
 );
 
-export const fetchHomeFailure = createAction(
+export const fetchPublicationsFailure = createAction(
   homeActionTypes.FETCH_HOME_FAILURE,
   error => {
     return error;
   }
 );
 
-export const fetchHomeRequest = createAction(
+export const fetchPublicationsRequest = createAction(
   homeActionTypes.FETCH_HOME_REQUEST
 );
 
-export const fetchHomeSuccess = createAction(
+export const fetchPublicationsSuccess = createAction(
   homeActionTypes.FETCH_HOME_SUCCESS,
   response => {
-    console.log("TCL: response", response)
     return response
   }
+);
+
+
+export const fetchPublicationsById = createAction(
+  homeActionTypes.FETCH_HOME,
+  id => ({ id })
 );

@@ -2,10 +2,8 @@ import {
   catchError,
   map,
   startWith,
-  switchMap,
   mergeMap,
   takeUntil,
-  flatMap,
 } from 'rxjs/operators';
 import { of, from } from 'rxjs';
 import { ofType } from 'redux-observable';
@@ -18,14 +16,14 @@ import { fetch } from '../../api/fetchHome.api';
 function homeEpic(action$) {
   return action$.pipe(
     ofType(homeActionTypes.FETCH_HOME),
-    switchMap(() => {
+    mergeMap(() => {
       return fetch().pipe(
-        map(response => homeActions.fetchHomeSuccess(response.data)),
-        catchError(error => of(homeActions.fetchHomeFailure(error))),
+        map(response => homeActions.fetchPublicationsSuccess(response.data)),
+        catchError(error => of(homeActions.fetchPublicationsFailure(error))),
         takeUntil(
           action$.pipe(ofType(homeActionTypes.FETCH_HOME_FAILURE))
         ),
-        startWith(homeActions.fetchHomeRequest())
+        startWith(homeActions.fetchPublicationsRequest())
       )
     })
   );
